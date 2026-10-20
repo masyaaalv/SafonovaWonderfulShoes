@@ -1,0 +1,97 @@
+﻿<Page x:Class="SafonovaWonderfulShoes.ProductPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SafonovaWonderfulShoes"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="ProductPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="65"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Name ="Enter" Grid.Column="0" Text="Вы авторизированы как:" HorizontalAlignment="Center" Height="18" Width="146" />
+            <TextBlock Name ="FIOTB" Grid.Column="1" HorizontalAlignment="Center"/>
+            <TextBlock Name ="Role" Grid.Column="2" Text="Ваша роль:" HorizontalAlignment="Center" Height="18" Width="100" />
+            <TextBlock Name ="RoleTB" Grid.Column="3" HorizontalAlignment="Center"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Vertical">
+                <TextBlock x:Name="SearchTB" Text="Поиск по наименованию" Margin="0,0,0,0" HorizontalAlignment="Center"/>
+                <TextBox Name="SearchTBox" Width="215" Height="22" Margin="0,5,0,0"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Orientation="Vertical">
+                <TextBlock x:Name="FilterTB" Text="Фильтрация по категории " VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                <ComboBox Name="FilterCBox" SelectionChanged="FilterCBox_SelectionChanged" Width="215" HorizontalAlignment="Center" Margin="0,3.5,0,0">
+                    <TextBlock>Все</TextBlock>
+                    <TextBlock>Детская обувь</TextBlock>
+                    <TextBlock>Женская Обувь</TextBlock>
+                    <TextBlock>Мужская Обувь</TextBlock>
+                </ComboBox>
+            </StackPanel>
+
+            <StackPanel Grid.Column="2" Orientation="Vertical">
+                <TextBlock Name="SortTB" Text="Сортировка по цене" HorizontalAlignment="Center" />
+                <RadioButton Content="по возрастанию стоимости" Name="RButtonUp" GroupName="Sort" Checked="RButtonUp_Checked"/>
+                <RadioButton Content="по убыванию стоимости" Name="RButtonDown" GroupName="Sort" Checked="RButtonDown_Checked"/>
+            </StackPanel>                        
+        </Grid>
+
+        <ListView Name="ProductListView" Grid.Row="2">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="800"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Image Width="150" Grid.Column="0" Grid.RowSpan="4" Stretch="Uniform" HorizontalAlignment="Center">
+                            <Image.Source>
+                                <Binding Path="Logo">
+                                    <Binding.TargetNullValue>
+                                        <ImageSource>
+                                            /res/picture.png
+                                        </ImageSource>
+                                    </Binding.TargetNullValue>
+                                </Binding>
+                            </Image.Source>
+                        </Image>
+                        
+
+
+
+
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </Grid>
+</Page>
