@@ -100,8 +100,6 @@
             </StackPanel>
         </Grid>
 
-        <!-- ListView с товарами -->
-        <!-- Строка 3: ListView с товарами -->
         <ListView Name="ProductListView" 
           Grid.Row="2" 
           Margin="10"
