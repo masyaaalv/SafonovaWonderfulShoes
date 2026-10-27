@@ -15,11 +15,11 @@ namespace SafonovaWonderfulShoes
     public partial class OrderItem
     {
         public int ID_OrderItem { get; set; }
-        public int ID_Order { get; set; }
-        public int ID_Stock { get; set; }
+        public Nullable<int> ID_Order { get; set; }
+        public Nullable<int> ID_Stock { get; set; }
         public Nullable<int> Quantity { get; set; }
     
-        public virtual Orders Orders { get; set; }
+        public virtual Order Order { get; set; }
         public virtual Stock Stock { get; set; }
     }
 }

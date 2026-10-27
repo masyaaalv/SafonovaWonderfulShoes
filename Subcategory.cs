@@ -12,18 +12,18 @@ namespace SafonovaWonderfulShoes
     using System;
     using System.Collections.Generic;
     
-    public partial class Manufacturers
+    public partial class Subcategory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Manufacturers()
+        public Subcategory()
         {
-            this.Products = new HashSet<Products>();
+            this.Products = new HashSet<Product>();
         }
     
-        public int ID_Manufacturer { get; set; }
-        public string Manufacturer_Name { get; set; }
+        public int ID_Subcategory { get; set; }
+        public string Subcategory_Name { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Products> Products { get; set; }
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

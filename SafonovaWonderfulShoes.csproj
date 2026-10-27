@@ -7,7 +7,7 @@
     <ProjectGuid>{9647BA15-473E-4DB0-B13C-BDD1AAC3F78E}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>SafonovaWonderfulShoes</RootNamespace>
-    <AssemblyName>SafonovaWonderfulShoes</AssemblyName>
+    <AssemblyName>а</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -64,19 +64,22 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Categories.cs">
+    <Compile Include="AuthPage.xaml.cs">
+      <DependentUpon>AuthPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Category.cs">
       <DependentUpon>SafonovaModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Manufacturers.cs">
+    <Compile Include="Manufacturer.cs">
+      <DependentUpon>SafonovaModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Order.cs">
       <DependentUpon>SafonovaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="OrderItem.cs">
       <DependentUpon>SafonovaModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Orders.cs">
-      <DependentUpon>SafonovaModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Products.cs">
+    <Compile Include="Product.cs">
       <DependentUpon>SafonovaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Role.cs">
@@ -109,15 +112,19 @@
     <Compile Include="Stock.cs">
       <DependentUpon>SafonovaModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Subcategories.cs">
+    <Compile Include="Subcategory.cs">
       <DependentUpon>SafonovaModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="sysdiagrams.cs">
+    <Compile Include="sysdiagram.cs">
       <DependentUpon>SafonovaModel.tt</DependentUpon>
     </Compile>
     <Compile Include="User.cs">
       <DependentUpon>SafonovaModel.tt</DependentUpon>
     </Compile>
+    <Page Include="AuthPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -157,6 +164,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="App.Config" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -169,9 +177,6 @@
     <None Include="SafonovaModel.edmx.diagram">
       <DependentUpon>SafonovaModel.edmx</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="res\IMG_KB_164811.png" />
@@ -214,19 +219,19 @@
     <Resource Include="res\Чудо Обувь.png" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="SafonovaModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>SafonovaModel.Context.cs</LastGenOutput>
       <DependentUpon>SafonovaModel.edmx</DependentUpon>
+      <LastGenOutput>SafonovaModel.Context.cs</LastGenOutput>
     </Content>
     <Content Include="SafonovaModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>SafonovaModel.edmx</DependentUpon>
       <LastGenOutput>SafonovaModel.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

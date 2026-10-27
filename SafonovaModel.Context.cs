@@ -21,6 +21,7 @@ namespace SafonovaWonderfulShoes
             : base("name=SafonovaShoesEntities")
         {
         }
+
         private static SafonovaShoesEntities _context;
         public static SafonovaShoesEntities GetContext()
         {
@@ -36,17 +37,17 @@ namespace SafonovaWonderfulShoes
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Categories> Categories { get; set; }
-        public virtual DbSet<Manufacturers> Manufacturers { get; set; }
-        public virtual DbSet<OrderItem> OrderItem { get; set; }
-        public virtual DbSet<Orders> Orders { get; set; }
-        public virtual DbSet<Products> Products { get; set; }
-        public virtual DbSet<Role> Role { get; set; }
-        public virtual DbSet<Size> Size { get; set; }
-        public virtual DbSet<Stock> Stock { get; set; }
-        public virtual DbSet<Subcategories> Subcategories { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
-        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Category> Categories { get; set; }
+        public virtual DbSet<Manufacturer> Manufacturers { get; set; }
+        public virtual DbSet<OrderItem> OrderItems { get; set; }
+        public virtual DbSet<Order> Orders { get; set; }
+        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<Size> Sizes { get; set; }
+        public virtual DbSet<Stock> Stocks { get; set; }
+        public virtual DbSet<Subcategory> Subcategories { get; set; }
+        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<User> Users { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {

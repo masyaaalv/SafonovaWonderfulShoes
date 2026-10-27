@@ -24,8 +24,8 @@
             <PropertyRef Name="ID_OrderItem" />
           </Key>
           <Property Name="ID_OrderItem" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ID_Order" Type="int" Nullable="false" />
-          <Property Name="ID_Stock" Type="int" Nullable="false" />
+          <Property Name="ID_Order" Type="int" />
+          <Property Name="ID_Stock" Type="int" />
           <Property Name="Quantity" Type="int" />
         </EntityType>
         <EntityType Name="Orders">
@@ -102,7 +102,7 @@
           <Property Name="Login" Type="nvarchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <Association Name="FK_OrderItem_Orders">
-          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Orders" Multiplicity="0..1" />
           <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Orders">
@@ -114,7 +114,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderItem_Stock">
-          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="0..1" />
           <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Stock">
@@ -294,7 +294,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SafonovaShoesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="Categories">
+        <EntityType Name="Category">
           <Key>
             <PropertyRef Name="ID_Category" />
           </Key>
@@ -302,7 +302,7 @@
           <Property Name="Category_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Products" Relationship="Self.FK_Products_Categories" FromRole="Categories" ToRole="Products" />
         </EntityType>
-        <EntityType Name="Manufacturers">
+        <EntityType Name="Manufacturer">
           <Key>
             <PropertyRef Name="ID_Manufacturer" />
           </Key>
@@ -315,23 +315,23 @@
             <PropertyRef Name="ID_OrderItem" />
           </Key>
           <Property Name="ID_OrderItem" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_Order" Type="Int32" Nullable="false" />
-          <Property Name="ID_Stock" Type="Int32" Nullable="false" />
+          <Property Name="ID_Order" Type="Int32" />
+          <Property Name="ID_Stock" Type="Int32" />
           <Property Name="Quantity" Type="Int32" />
-          <NavigationProperty Name="Orders" Relationship="Self.FK_OrderItem_Orders" FromRole="OrderItem" ToRole="Orders" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_OrderItem_Orders" FromRole="OrderItem" ToRole="Orders" />
           <NavigationProperty Name="Stock" Relationship="Self.FK_OrderItem_Stock" FromRole="OrderItem" ToRole="Stock" />
         </EntityType>
-        <EntityType Name="Orders">
+        <EntityType Name="Order">
           <Key>
             <PropertyRef Name="ID_Order" />
           </Key>
           <Property Name="ID_Order" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ID_User" Type="Int32" Nullable="false" />
           <Property Name="Order_date" Type="DateTime" Nullable="false" Precision="0" />
-          <NavigationProperty Name="OrderItem" Relationship="Self.FK_OrderItem_Orders" FromRole="Orders" ToRole="OrderItem" />
+          <NavigationProperty Name="OrderItems" Relationship="Self.FK_OrderItem_Orders" FromRole="Orders" ToRole="OrderItem" />
           <NavigationProperty Name="User" Relationship="Self.FK_Orders_User" FromRole="Orders" ToRole="User" />
         </EntityType>
-        <EntityType Name="Products">
+        <EntityType Name="Product">
           <Key>
             <PropertyRef Name="ID_Product" />
           </Key>
@@ -344,10 +344,10 @@
           <Property Name="Discribtion" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Composition" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Cost" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
-          <NavigationProperty Name="Categories" Relationship="Self.FK_Products_Categories" FromRole="Products" ToRole="Categories" />
-          <NavigationProperty Name="Manufacturers" Relationship="Self.FK_Products_Manufacturers" FromRole="Products" ToRole="Manufacturers" />
-          <NavigationProperty Name="Subcategories" Relationship="Self.FK_Products_Subcategories" FromRole="Products" ToRole="Subcategories" />
-          <NavigationProperty Name="Stock" Relationship="Self.FK_Stock_Products" FromRole="Products" ToRole="Stock" />
+          <NavigationProperty Name="Category" Relationship="Self.FK_Products_Categories" FromRole="Products" ToRole="Categories" />
+          <NavigationProperty Name="Manufacturer" Relationship="Self.FK_Products_Manufacturers" FromRole="Products" ToRole="Manufacturers" />
+          <NavigationProperty Name="Subcategory" Relationship="Self.FK_Products_Subcategories" FromRole="Products" ToRole="Subcategories" />
+          <NavigationProperty Name="Stocks" Relationship="Self.FK_Stock_Products" FromRole="Products" ToRole="Stock" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -355,7 +355,7 @@
           </Key>
           <Property Name="ID_Role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Role_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_Role" FromRole="Role" ToRole="User" />
         </EntityType>
         <EntityType Name="Size">
           <Key>
@@ -363,7 +363,7 @@
           </Key>
           <Property Name="ID_Size" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Size1" Type="Decimal" Precision="18" Scale="1" Nullable="false" />
-          <NavigationProperty Name="Stock" Relationship="Self.FK_Stock_Size" FromRole="Size" ToRole="Stock" />
+          <NavigationProperty Name="Stocks" Relationship="Self.FK_Stock_Size" FromRole="Size" ToRole="Stock" />
         </EntityType>
         <EntityType Name="Stock">
           <Key>
@@ -373,11 +373,11 @@
           <Property Name="ID_Product" Type="Int32" Nullable="false" />
           <Property Name="ID_Size" Type="Int32" Nullable="false" />
           <Property Name="Available" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="OrderItem" Relationship="Self.FK_OrderItem_Stock" FromRole="Stock" ToRole="OrderItem" />
-          <NavigationProperty Name="Products" Relationship="Self.FK_Stock_Products" FromRole="Stock" ToRole="Products" />
+          <NavigationProperty Name="OrderItems" Relationship="Self.FK_OrderItem_Stock" FromRole="Stock" ToRole="OrderItem" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Stock_Products" FromRole="Stock" ToRole="Products" />
           <NavigationProperty Name="Size" Relationship="Self.FK_Stock_Size" FromRole="Stock" ToRole="Size" />
         </EntityType>
-        <EntityType Name="Subcategories">
+        <EntityType Name="Subcategory">
           <Key>
             <PropertyRef Name="ID_Subcategory" />
           </Key>
@@ -385,7 +385,7 @@
           <Property Name="Subcategory_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Products" Relationship="Self.FK_Products_Subcategories" FromRole="Subcategories" ToRole="Products" />
         </EntityType>
-        <EntityType Name="sysdiagrams">
+        <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
@@ -409,8 +409,8 @@
           <NavigationProperty Name="Role" Relationship="Self.FK_User_Role" FromRole="User" ToRole="Role" />
         </EntityType>
         <Association Name="FK_Products_Categories">
-          <End Role="Categories" Type="Self.Categories" Multiplicity="1" />
-          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <End Role="Categories" Type="Self.Category" Multiplicity="1" />
+          <End Role="Products" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Categories">
               <PropertyRef Name="ID_Category" />
@@ -421,8 +421,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Products_Manufacturers">
-          <End Role="Manufacturers" Type="Self.Manufacturers" Multiplicity="1" />
-          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <End Role="Manufacturers" Type="Self.Manufacturer" Multiplicity="1" />
+          <End Role="Products" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Manufacturers">
               <PropertyRef Name="ID_Manufacturer" />
@@ -433,7 +433,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderItem_Orders">
-          <End Role="Orders" Type="Self.Orders" Multiplicity="1" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="0..1" />
           <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Orders">
@@ -445,7 +445,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_OrderItem_Stock">
-          <End Role="Stock" Type="Self.Stock" Multiplicity="1" />
+          <End Role="Stock" Type="Self.Stock" Multiplicity="0..1" />
           <End Role="OrderItem" Type="Self.OrderItem" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Stock">
@@ -458,7 +458,7 @@
         </Association>
         <Association Name="FK_Orders_User">
           <End Role="User" Type="Self.User" Multiplicity="1" />
-          <End Role="Orders" Type="Self.Orders" Multiplicity="*" />
+          <End Role="Orders" Type="Self.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User">
               <PropertyRef Name="ID_User" />
@@ -469,8 +469,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Products_Subcategories">
-          <End Role="Subcategories" Type="Self.Subcategories" Multiplicity="1" />
-          <End Role="Products" Type="Self.Products" Multiplicity="*" />
+          <End Role="Subcategories" Type="Self.Subcategory" Multiplicity="1" />
+          <End Role="Products" Type="Self.Product" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Subcategories">
               <PropertyRef Name="ID_Subcategory" />
@@ -481,7 +481,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Stock_Products">
-          <End Role="Products" Type="Self.Products" Multiplicity="1" />
+          <End Role="Products" Type="Self.Product" Multiplicity="1" />
           <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Products">
@@ -517,17 +517,17 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SafonovaShoesEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Categories" EntityType="Self.Categories" />
-          <EntitySet Name="Manufacturers" EntityType="Self.Manufacturers" />
-          <EntitySet Name="OrderItem" EntityType="Self.OrderItem" />
-          <EntitySet Name="Orders" EntityType="Self.Orders" />
-          <EntitySet Name="Products" EntityType="Self.Products" />
-          <EntitySet Name="Role" EntityType="Self.Role" />
-          <EntitySet Name="Size" EntityType="Self.Size" />
-          <EntitySet Name="Stock" EntityType="Self.Stock" />
-          <EntitySet Name="Subcategories" EntityType="Self.Subcategories" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
-          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="Categories" EntityType="Self.Category" />
+          <EntitySet Name="Manufacturers" EntityType="Self.Manufacturer" />
+          <EntitySet Name="OrderItems" EntityType="Self.OrderItem" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Sizes" EntityType="Self.Size" />
+          <EntitySet Name="Stocks" EntityType="Self.Stock" />
+          <EntitySet Name="Subcategories" EntityType="Self.Subcategory" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Users" EntityType="Self.User" />
           <AssociationSet Name="FK_Products_Categories" Association="Self.FK_Products_Categories">
             <End Role="Categories" EntitySet="Categories" />
             <End Role="Products" EntitySet="Products" />
@@ -538,14 +538,14 @@
           </AssociationSet>
           <AssociationSet Name="FK_OrderItem_Orders" Association="Self.FK_OrderItem_Orders">
             <End Role="Orders" EntitySet="Orders" />
-            <End Role="OrderItem" EntitySet="OrderItem" />
+            <End Role="OrderItem" EntitySet="OrderItems" />
           </AssociationSet>
           <AssociationSet Name="FK_OrderItem_Stock" Association="Self.FK_OrderItem_Stock">
-            <End Role="Stock" EntitySet="Stock" />
-            <End Role="OrderItem" EntitySet="OrderItem" />
+            <End Role="Stock" EntitySet="Stocks" />
+            <End Role="OrderItem" EntitySet="OrderItems" />
           </AssociationSet>
           <AssociationSet Name="FK_Orders_User" Association="Self.FK_Orders_User">
-            <End Role="User" EntitySet="User" />
+            <End Role="User" EntitySet="Users" />
             <End Role="Orders" EntitySet="Orders" />
           </AssociationSet>
           <AssociationSet Name="FK_Products_Subcategories" Association="Self.FK_Products_Subcategories">
@@ -554,15 +554,15 @@
           </AssociationSet>
           <AssociationSet Name="FK_Stock_Products" Association="Self.FK_Stock_Products">
             <End Role="Products" EntitySet="Products" />
-            <End Role="Stock" EntitySet="Stock" />
+            <End Role="Stock" EntitySet="Stocks" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Role" Association="Self.FK_User_Role">
-            <End Role="Role" EntitySet="Role" />
-            <End Role="User" EntitySet="User" />
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
           </AssociationSet>
           <AssociationSet Name="FK_Stock_Size" Association="Self.FK_Stock_Size">
-            <End Role="Size" EntitySet="Size" />
-            <End Role="Stock" EntitySet="Stock" />
+            <End Role="Size" EntitySet="Sizes" />
+            <End Role="Stock" EntitySet="Stocks" />
           </AssociationSet>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -613,7 +613,7 @@
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище SafonovaShoesModelContainer" CdmEntityContainer="SafonovaShoesEntities">
           <EntitySetMapping Name="Categories">
-            <EntityTypeMapping TypeName="SafonovaShoesModel.Categories">
+            <EntityTypeMapping TypeName="SafonovaShoesModel.Category">
               <MappingFragment StoreEntitySet="Categories">
                 <ScalarProperty Name="ID_Category" ColumnName="ID_Category" />
                 <ScalarProperty Name="Category_Name" ColumnName="Category_Name" />
@@ -621,14 +621,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Manufacturers">
-            <EntityTypeMapping TypeName="SafonovaShoesModel.Manufacturers">
+            <EntityTypeMapping TypeName="SafonovaShoesModel.Manufacturer">
               <MappingFragment StoreEntitySet="Manufacturers">
                 <ScalarProperty Name="ID_Manufacturer" ColumnName="ID_Manufacturer" />
                 <ScalarProperty Name="Manufacturer_Name" ColumnName="Manufacturer_Name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OrderItem">
+          <EntitySetMapping Name="OrderItems">
             <EntityTypeMapping TypeName="SafonovaShoesModel.OrderItem">
               <MappingFragment StoreEntitySet="OrderItem">
                 <ScalarProperty Name="ID_OrderItem" ColumnName="ID_OrderItem" />
@@ -639,7 +639,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="SafonovaShoesModel.Orders">
+            <EntityTypeMapping TypeName="SafonovaShoesModel.Order">
               <MappingFragment StoreEntitySet="Orders">
                 <ScalarProperty Name="ID_Order" ColumnName="ID_Order" />
                 <ScalarProperty Name="ID_User" ColumnName="ID_User" />
@@ -648,7 +648,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="SafonovaShoesModel.Products">
+            <EntityTypeMapping TypeName="SafonovaShoesModel.Product">
               <MappingFragment StoreEntitySet="Products">
                 <ScalarProperty Name="ID_Product" ColumnName="ID_Product" />
                 <ScalarProperty Name="ID_Catrgory" ColumnName="ID_Catrgory" />
@@ -662,7 +662,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Role">
+          <EntitySetMapping Name="Roles">
             <EntityTypeMapping TypeName="SafonovaShoesModel.Role">
               <MappingFragment StoreEntitySet="Role">
                 <ScalarProperty Name="ID_Role" ColumnName="ID_Role" />
@@ -670,7 +670,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Size">
+          <EntitySetMapping Name="Sizes">
             <EntityTypeMapping TypeName="SafonovaShoesModel.Size">
               <MappingFragment StoreEntitySet="Size">
                 <ScalarProperty Name="ID_Size" ColumnName="ID_Size" />
@@ -678,7 +678,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Stock">
+          <EntitySetMapping Name="Stocks">
             <EntityTypeMapping TypeName="SafonovaShoesModel.Stock">
               <MappingFragment StoreEntitySet="Stock">
                 <ScalarProperty Name="ID_Stock" ColumnName="ID_Stock" />
@@ -689,7 +689,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Subcategories">
-            <EntityTypeMapping TypeName="SafonovaShoesModel.Subcategories">
+            <EntityTypeMapping TypeName="SafonovaShoesModel.Subcategory">
               <MappingFragment StoreEntitySet="Subcategories">
                 <ScalarProperty Name="ID_Subcategory" ColumnName="ID_Subcategory" />
                 <ScalarProperty Name="Subcategory_Name" ColumnName="Subcategory_Name" />
@@ -697,7 +697,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="SafonovaShoesModel.sysdiagrams">
+            <EntityTypeMapping TypeName="SafonovaShoesModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
                 <ScalarProperty Name="name" ColumnName="name" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -707,7 +707,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="User">
+          <EntitySetMapping Name="Users">
             <EntityTypeMapping TypeName="SafonovaShoesModel.User">
               <MappingFragment StoreEntitySet="User">
                 <ScalarProperty Name="ID_User" ColumnName="ID_User" />
@@ -757,7 +757,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />

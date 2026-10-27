@@ -17,7 +17,7 @@ namespace SafonovaWonderfulShoes
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Stock()
         {
-            this.OrderItem = new HashSet<OrderItem>();
+            this.OrderItems = new HashSet<OrderItem>();
         }
     
         public int ID_Stock { get; set; }
@@ -26,8 +26,10 @@ namespace SafonovaWonderfulShoes
         public int Available { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OrderItem> OrderItem { get; set; }
-        public virtual Products Products { get; set; }
+        public virtual ICollection<OrderItem> OrderItems { get; set; }
+        public virtual Product Product { get; set; }
         public virtual Size Size { get; set; }
+
+        
     }
 }

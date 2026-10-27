@@ -17,13 +17,13 @@ namespace SafonovaWonderfulShoes
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Size()
         {
-            this.Stock = new HashSet<Stock>();
+            this.Stocks = new HashSet<Stock>();
         }
     
         public int ID_Size { get; set; }
         public decimal Size1 { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Stock> Stock { get; set; }
+        public virtual ICollection<Stock> Stocks { get; set; }
     }
 }

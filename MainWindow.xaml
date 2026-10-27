@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SafonovaWonderfulShoes"
         mc:Ignorable="d"
-        Title="Чудо Обувь" Height="450" Width="800" Icon ="/res/Чудо Обувь.ico" FontFamily="Calibry">
+        Title="Чудо Обувь" Height="600" Width="1000" Icon ="/res/Чудо Обувь.ico" FontFamily="Calibry">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
@@ -22,7 +22,7 @@
             <TextBlock Text="Чудо Обувь" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" Height="36" Width="172" />
             <Button Name="BackBtn" Grid.Column="2" Margin="27,25,13,25" Content="Назад" Click="BackBtn_Click" Visibility="Collapsed"/>
         </Grid>
-        <Frame Grid.Row="2" Name="MainFrame" ContentRendered="MainFrame_ContentRendered" NavigationUIVisibility="Hidden" />
+        <Frame Grid.Row="1" Name="MainFrame" ContentRendered="MainFrame_ContentRendered" NavigationUIVisibility="Hidden" />
 
     </Grid>
 </Window>

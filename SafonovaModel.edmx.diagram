@@ -4,17 +4,17 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="56e43e96b58c4ad0b2f5b10e59fcb296" Name="Diagram1">
-        <EntityTypeShape EntityType="SafonovaShoesModel.Categories" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
-        <EntityTypeShape EntityType="SafonovaShoesModel.Manufacturers" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+      <Diagram DiagramId="b76766437b4443b2bf91b2ee723e642e" Name="Diagram1">
+        <EntityTypeShape EntityType="SafonovaShoesModel.Category" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="SafonovaShoesModel.Manufacturer" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SafonovaShoesModel.OrderItem" Width="1.5" PointX="7.5" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SafonovaShoesModel.Orders" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SafonovaShoesModel.Products" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="SafonovaShoesModel.Order" Width="1.5" PointX="5.25" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SafonovaShoesModel.Product" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="SafonovaShoesModel.Role" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
         <EntityTypeShape EntityType="SafonovaShoesModel.Size" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="SafonovaShoesModel.Stock" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SafonovaShoesModel.Subcategories" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SafonovaShoesModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SafonovaShoesModel.Subcategory" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SafonovaShoesModel.sysdiagram" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SafonovaShoesModel.User" Width="1.5" PointX="3" PointY="10.5" IsExpanded="true" />
         <AssociationConnector Association="SafonovaShoesModel.FK_Products_Categories" ManuallyRouted="false" />
         <AssociationConnector Association="SafonovaShoesModel.FK_Products_Manufacturers" ManuallyRouted="false" />

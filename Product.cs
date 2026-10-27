@@ -11,13 +11,14 @@ namespace SafonovaWonderfulShoes
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     
-    public partial class Products
+    public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Products()
+        public Product()
         {
-            this.Stock = new HashSet<Stock>();
+            this.Stocks = new HashSet<Stock>();
         }
     
         public int ID_Product { get; set; }
@@ -30,10 +31,27 @@ namespace SafonovaWonderfulShoes
         public string Composition { get; set; }
         public decimal Cost { get; set; }
     
-        public virtual Categories Categories { get; set; }
-        public virtual Manufacturers Manufacturers { get; set; }
-        public virtual Subcategories Subcategories { get; set; }
+        public virtual Category Category { get; set; }
+        public virtual Manufacturer Manufacturer { get; set; }
+        public virtual Subcategory Subcategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Stock> Stock { get; set; }
+        public virtual ICollection<Stock> Stocks { get; set; }
+
+
+        public string ProductPhotoPath
+        {
+            get
+            {
+                if (Image == null)
+                    return null;
+                return "res/" + Image;
+            }
+        }
+
+        public string ManufactureTitle => this.Manufacturer?.Manufacturer_Name;
+        public string CategoryTitle => this.Category?.Category_Name;
+        public string SubCategoryTitle => this.Subcategory?.Subcategory_Name;
+        public int CountProduct => this.Stocks?.Sum(cp => cp.Available) ?? 0;
+       
     }
 }
